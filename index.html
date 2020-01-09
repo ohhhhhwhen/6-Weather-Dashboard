@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Weather Dashboard</title>
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+      integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+      crossorigin="anonymous"
+    />
+    <link rel="stylesheet" type="text/css" href="style.css" />
+  </head>
+  <body>
+    <nav class="navbar  navbar-dark bg-dark">
+      <a class="navbar-brand text-center" href="index.html">
+        Weather Dashboard
+      </a>
+    </nav>
+    <div class="card searchList" style="width: 18rem;">
+      <div class="card-body">
+        <h5 class="card-title">Search For a City:</h5>
+        <input type="text" />
+        <img
+          src="images/search-button.png"
+          class="searchBtn"
+          height="29"
+          width="29"
+          style="background-color:rgb(7, 156, 255)"
+        />
+      </div>
+    </div>
+    <div class="container">
+      <div class="row">
+        <!-- <div class="col-md-2">
+          <div class="card" style="width: 18rem;">
+            <div class="card-body">
+              <h5 class="card-title">Search For a City:</h5>
+              <input type="text" />
+              <img
+                src="images/search-button.png"
+                class="searchBtn"
+                height="29"
+                width="29"
+                style="background-color:rgb(7, 156, 255)"
+              />
+            </div>
+          </div>
+        </div> -->
+        <div class="col-md-10">
+          <div class="card" style="margin-top: -105px; margin-left: 15px;">
+            <div class="card-body">
+              <h2 class="card-title cityName">City Name</h2>
+              <br>
+              <h6 class="temp">Temperature: </h6>
+              <h6 class="hum">Humidity: </h6>
+              <h6 class="wind">Wind Speed: </h6>
+              <h6 class="uv">UV Index: </h6>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-2.4" style="margin-left: 30px; margin-top: 10px; background-size: 30px; background-color: rgb(92, 116, 250)">
+          <h4 class="day2"></h4>
+        </div>
+        <div class="col-md-2.4" style="margin-left: 30px; margin-top: 10px;">
+          <h4 class="day2"></h4>
+        </div>
+        <div class="col-md-2.4" style="margin-left: 30px; margin-top: 10px;">
+          <h4 class="day2"></h4>
+        </div>
+        <div class="col-md-2.4" style="margin-left: 30px; margin-top: 10px;">
+          <h4 class="day2"></h4>
+        </div>
+        <div class="col-md-2.4" style="margin-left: 30px; margin-top: 10px;">
+          <h4 class="day2"></h4>
+        </div>
+      </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment-with-locales.min.js"></script>
+    <script src="script.js"></script>
+  </body>
+</html>
