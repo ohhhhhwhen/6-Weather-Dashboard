@@ -21,27 +21,30 @@ function displayCityInfo() {
     method: "GET"
   }).then(function(response) {
     $(".cityName").text(response.name);
-    $(".temp").text("Temperature: " + response.main.temp + " °F");
-    $(".hum").text("Humidity: " + response.main.humidity + "%");
+    $(".temp").text("Temperature: " + response.main.temp + " F");
+    $(".hum").text("Humidity: " + response.main.humidity);
     $(".wind").text("Wind Speed: " + response.wind.speed);
     lat = response.coord.lat;
     lon = response.coord.lon;
-    uv();
   });
 }
 
 function city() {
-  var searchedCity = $("#citySearch")
+  var userCity = $("#citySearch")
     .val()
     .trim();
-  console.log(searchedCity);
-  cityNames.push(searchedCity);
-  console.log(cityNames);
 
+  cityNames.push(userCity);
+
+  cityData();
+  uv();
+}
+
+function cityData() {
   var queryURL =
     "https://api.openweathermap.org/data/2.5/weather?" +
     "q=" +
-    searchedCity +
+    userCity +
     "&units=imperial&appid=" +
     APIKey;
 
@@ -60,17 +63,19 @@ function city() {
 
     lat = response.coord.lat;
     lon = response.coord.lon;
-    console.log(lat);
-    console.log(lon);
 
     uv();
-    days.remove("class", "hidden");
-    $(".day2").text(blueDate);
   });
 }
 
 function uv() {
-  var queryUVURL =
+uvData();
+days.remove("class", "hidden");
+    $(".day2").text(blueDate);
+}
+
+function uvData() {
+  var queryURL =
     "http://api.openweathermap.org/data/2.5/uvi?appid=" +
     APIKey +
     "&lat=" +
@@ -82,11 +87,14 @@ function uv() {
     url: queryUVURL,
     method: "GET"
   }).then(function(response) {
-    console.log(queryUVURL);
+    console.log(queryURL);
 
     console.log(response);
 
     $(".uv").text("UV Index: " + response.value);
+
+    days.remove("class", "hidden");
+    $(".day2").text(blueDate);
 
     $(".cityBtns").empty();
 
