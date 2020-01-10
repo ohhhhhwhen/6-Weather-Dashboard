@@ -1,3 +1,11 @@
+a{
+    font-size: 30px !important;
+}
+
+.left-side{
+    background-color: rgb(202, 202, 202);
+}
+
 .cities{
     width: 205px;
 }
