@@ -96,7 +96,6 @@ function ajaxCity() {
     lon = response.coord.lon;
     cityID = response.id;
     uv();
-    // days.remove("class", "hidden");
   });
 }
 
@@ -108,18 +107,15 @@ function icon() {
 }
 
 function fiveDayW() {
-  // days.remove("class", "hidden");
-  // $(".day2").text(blueDate);
-
   var daysSection = document.getElementById("title5D");
   daysSection.removeAttribute("class", "hidden");
-
 
   var fiveURL =
     "http://api.openweathermap.org/data/2.5/forecast?appid=" +
     APIKey +
     "&q=" +
-    userCity;
+    userCity +
+    "&units=imperial";
 
   $.ajax({
     url: fiveURL,
@@ -129,31 +125,28 @@ function fiveDayW() {
 
     console.log(response);
 
-    dayCount = 0;
-    for (var x = 0; x < 5; ++x) {
-      // var today = new Date();
-      // var newDates = new Date();
-      // newDates.setDate(today.getDate() + x);
-      // moment(newDates).format("M/D/YYYY");
-      // newDates.moment().format("M/D/YYYY");
-      // console.log(newDates);
+    console.log(response.list.length);
 
-      iconNum = response.list[dayCount].weather[dayCount].icon;
-      var dayBoxes = $(".fiveBoxes");
-      var extraDays = $("<div>");
-      var dayImg = $("<img>");
-      var extraTemp = $("<h6>");
-      var extraHum = $("<h6>"); 
-      var iconURL = "http://openweathermap.org/img/w/" + iconNum + ".png";
-         
-      dayImg.attr("src", iconURL);
-      extraTemp.text("Temperature: " + response.list[dayCount].main.temp);
-      extraHum.text("Humidity: " + response.list[dayCount].main.humidity);
 
-      extraDays.append(dayImg, extraTemp, extraHum);
-      extraDays.attr("class", "tomorrow");
-      dayBoxes.append(extraDays);
-      ++dayCount;
+    for (var x = 0; x < response.list.length; ++x) {
+      if(JSON.stringify(response.list[x].dt_txt).includes("00:00:00")){
+        iconNum = response.list[x].weather[x].icon;
+        var dayBoxes = $(".fiveBoxes");
+        var extraDays = $("<div>");
+        var dayImg = $("<img>");
+        var extraTemp = $("<h6>");
+        var extraHum = $("<h6>");
+        var iconURL = "http://openweathermap.org/img/w/" + iconNum + ".png";
+  
+        dayImg.attr("src", iconURL);
+        extraTemp.text("Temperature: " + response.list[x].main.temp);
+        extraHum.text("Humidity: " + response.list[x].main.humidity);
+  
+        extraDays.append(dayImg, extraTemp, extraHum);
+        extraDays.attr("class", "days");
+        dayBoxes.append(extraDays);
+        console.log(x);
+      }
     }
   });
 }
