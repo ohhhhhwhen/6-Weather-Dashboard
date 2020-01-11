@@ -7,15 +7,17 @@ var lat;
 var lon;
 var cityID;
 var iconNum;
-var queryURL; 
+var queryURL;
+var userCity;
+var dayCount = 0;
 var days = $(".fiveDays");
 
 function displayCityInfo() {
-  var cityClicked = $(this).attr("data-name");
-   queryURL =
+  userCity = $(this).attr("data-name");
+  queryURL =
     "https://api.openweathermap.org/data/2.5/weather?" +
     "q=" +
-    cityClicked +
+    userCity +
     "&units=imperial&appid=" +
     APIKey;
 
@@ -23,15 +25,15 @@ function displayCityInfo() {
 }
 
 function city() {
-  var searchedCity = $("#citySearch")
+  userCity = $("#citySearch")
     .val()
     .trim();
-  cityNames.push(searchedCity);
+  cityNames.push(userCity);
 
-   queryURL =
+  queryURL =
     "https://api.openweathermap.org/data/2.5/weather?" +
     "q=" +
-    searchedCity +
+    userCity +
     "&units=imperial&appid=" +
     APIKey;
 
@@ -52,6 +54,17 @@ function uv() {
     method: "GET"
   }).then(function(response) {
     $(".uv").text("UV Index: " + response.value);
+    // $(".uv").text("UV Index: ");
+    // var uvNum = $("<h6>").text(response.value);
+    // $(".uv").append(uvNum);
+    // if(response.value < 5){
+    //   $(".uv").remove("class", "red");
+    //   $(".uv").attr("class", "blue");
+    // }
+    // else{
+    //   $(".uv").remove("class", "blue");
+    //   $(".uv").attr("class", "red");
+    // }
     $(".cityBtns").empty();
 
     for (var i = 0; i < cityNames.length; ++i) {
@@ -69,6 +82,7 @@ function ajaxCity() {
     url: queryURL,
     method: "GET"
   }).then(function(response) {
+    console.log(response);
     iconNum = response.weather[0].icon;
 
     $(".cityName").text(response.name + " " + theDate + " ");
@@ -93,38 +107,60 @@ function icon() {
   $(".cityName").append(cityImg);
 }
 
-// function fiveDayW() {
-//   // days.remove("class", "hidden");
-//   // $(".day2").text(blueDate);
+function fiveDayW() {
+  // days.remove("class", "hidden");
+  // $(".day2").text(blueDate);
 
-//   var fiveURL =
-//   "api.openweathermap.org/data/2.5/forecast?lat=" +
-//   lat +
-//   "&lon=" +
-//   lon;
+  var daysSection = document.getElementById("title5D");
+  daysSection.removeAttribute("class", "hidden");
 
-//   $.ajax({
-//     url: fiveURL,
-//     method: "GET"
-//   }).then(function(response) {
-//     console.log(fiveURL);
 
-//     console.log(response);
+  var fiveURL =
+    "http://api.openweathermap.org/data/2.5/forecast?appid=" +
+    APIKey +
+    "&q=" +
+    userCity;
 
-//     // for (var x = 1; x < 6; ++x) {
-//     //   var today = new Date();
-//     //   var newDates = new Date();
-//     //   newDates.setDate(today.getDate() + x);
-//     //   moment(newDates).format("M/D/YYYY");
-//     //   newDates.moment().format("M/D/YYYY");
-//     //   console.log(newDates);
-//     // }
-//   });
-// }
+  $.ajax({
+    url: fiveURL,
+    method: "GET"
+  }).then(function(response) {
+    console.log(fiveURL);
+
+    console.log(response);
+
+    dayCount = 0;
+    for (var x = 0; x < 5; ++x) {
+      // var today = new Date();
+      // var newDates = new Date();
+      // newDates.setDate(today.getDate() + x);
+      // moment(newDates).format("M/D/YYYY");
+      // newDates.moment().format("M/D/YYYY");
+      // console.log(newDates);
+
+      iconNum = response.list[dayCount].weather[dayCount].icon;
+      var dayBoxes = $(".fiveBoxes");
+      var extraDays = $("<div>");
+      var dayImg = $("<img>");
+      var extraTemp = $("<h6>");
+      var extraHum = $("<h6>"); 
+      var iconURL = "http://openweathermap.org/img/w/" + iconNum + ".png";
+         
+      dayImg.attr("src", iconURL);
+      extraTemp.text("Temperature: " + response.list[dayCount].main.temp);
+      extraHum.text("Humidity: " + response.list[dayCount].main.humidity);
+
+      extraDays.append(dayImg, extraTemp, extraHum);
+      extraDays.attr("class", "tomorrow");
+      dayBoxes.append(extraDays);
+      ++dayCount;
+    }
+  });
+}
 
 $(".searchBtn").on("click", function() {
   city();
-  //  fiveDayW();
+  fiveDayW();
 });
 
 $(document).on("click", ".cities", displayCityInfo);

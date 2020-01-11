@@ -11,7 +11,7 @@ This application assignment was a Weather Dashboard.
 An html that displays the current weather of a desired
 location. Depending on what the user searches. Using an
 online weather api, I was able to grab various info about
-locations using advanced javascript (ajax). With that I
+locations using Asynchronous Javascript (ajax). With that I
 was able to grab and display the temperature, humidity, 
 wind speed, and uv. In addition, the html includes a small
 display of the next 5 days in the searched location. With 

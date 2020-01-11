@@ -23,3 +23,15 @@ a {
   background-size: 30px;
   background-color: rgb(92, 116, 250);
 }
+
+.hidden{
+    visibility: hidden;
+}
+
+.red{
+    background-color: rgb(255, 38, 38);
+}
+
+.blue{
+    background-color: rgb(42, 42, 255);
+}
