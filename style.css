@@ -1,11 +1,25 @@
-a{
-    font-size: 30px !important;
+a {
+  font-size: 30px !important;
 }
 
-.left-side{
-    background-color: rgb(202, 202, 202);
+.left-side {
+  background-color: rgb(202, 202, 202);
 }
 
-.cities{
-    width: 205px;
+.cities {
+  width: 205px;
+}
+
+.tomorrow {
+  margin-left: 15px;
+  margin-top: 10px;
+  background-size: 30px;
+  background-color: rgb(92, 116, 250);
+}
+
+.daysAfter {
+  margin-left: 30px;
+  margin-top: 10px;
+  background-size: 30px;
+  background-color: rgb(92, 116, 250);
 }
