@@ -42,7 +42,7 @@ function city() {
 
 function uv() {
   var queryUVURL =
-    "http://api.openweathermap.org/data/2.5/uvi?appid=" +
+    "https://api.openweathermap.org/data/2.5/uvi?appid=" +
     APIKey +
     "&lat=" +
     lat +
@@ -71,7 +71,6 @@ function ajaxCity() {
     url: queryURL,
     method: "GET"
   }).then(function(response) {
-    console.log(response);
     iconNum = response.weather[0].icon;
 
     $(".cityName").text(response.name + " " + theDate + " ");
@@ -79,7 +78,7 @@ function ajaxCity() {
     $(".hum").text("Humidity: " + response.main.humidity + "%");
     $(".wind").text("Wind Speed: " + response.wind.speed);
 
-    var iconURL = "http://openweathermap.org/img/w/" + iconNum + ".png";
+    var iconURL = "https://openweathermap.org/img/w/" + iconNum + ".png";
     var cityImg = $("<img>");
     cityImg.attr("src", iconURL);
     $(".cityName").append(cityImg);
@@ -97,7 +96,7 @@ function fiveDayW() {
   daysSection.removeAttribute("class", "hidden");
 
   var fiveURL =
-    "http://api.openweathermap.org/data/2.5/forecast?appid=" +
+    "https://api.openweathermap.org/data/2.5/forecast?appid=" +
     APIKey +
     "&q=" +
     userCity +
@@ -119,11 +118,10 @@ function fiveDayW() {
         var dayImg = $("<img>");
         var extraTemp = $("<h6>");
         var extraHum = $("<h6>");
-        var iconURL = "http://openweathermap.org/img/w/" + iconNum + ".png";
+        var iconURL = "https://openweathermap.org/img/w/" + iconNum + ".png";
         var today = new Date();
         var newDays = new Date();
         newDays.setDate(today.getDate() + dayCount);
-        console.log(moment(newDays).format("MM/D/YYYY"));
         var forecast = moment(newDays).format("MM/D/YYYY");
         thatDate.text(forecast);
         dayImg.attr("src", iconURL);
