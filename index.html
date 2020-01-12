@@ -12,10 +12,6 @@
       crossorigin="anonymous"
     />
     <link rel="stylesheet" type="text/css" href="style.css" />
-    <!-- <script
-      src="https://kit.fontawesome.com/5d6009289e.js"
-      crossorigin="anonymous"
-    ></script> -->
   </head>
   <body>
     <nav class="navbar  navbar-dark bg-dark">
@@ -31,22 +27,7 @@
           <div class="card left-side">
             <div class="card-body">
               <h5 class="card-title">Search For a City:</h5>
-
-              <!-- <form>
-                  <div class="form-group">
-                    <input class="form-control input-sm" id="inputsm" type="text">
-                    <i
-                    class="fas fa-search"
-                    style="background-color:rgb(7, 156, 255); color: white;">
-                    </i>
-                </div>
-                </form> -->
               <input type="text" id="citySearch"/>
-              <!-- <i
-                class="fas fa-search"
-                style="background-color:rgb(7, 156, 255); color: white;"
-
-              ></i> -->
               <img
                 src="images/search-button.png"
                 class="searchBtn"
@@ -66,6 +47,7 @@
           <div class="card">
             <div class="card-body">
               <h2 class="card-title cityName"></h2>
+              <div class="text-center weatherInfo">Your Weather Info Will Display Here</div>
               <br />
               <h6 class="temp"></h6>
               <h6 class="hum"></h6>
@@ -75,39 +57,9 @@
           </div>
           <div class="row">
           </div>
-          <h4 id="title5D" class="hidden fiveDaysTitle">5-Day Forecast: </h4>
+          <h1 id="title5D" class="hidden fiveDaysTitle">5-Day Forecast: </h1>
+
           <div class="row fiveBoxes">
-              <!-- <div class="row hidden fiveDays" >
-            <div
-              class="col-md-2.4"
-              style="margin-left: 15px; margin-top: 10px; background-size: 30px; background-color: rgb(92, 116, 250)"
-            >
-              <h4 class="day2"></h4>
-            </div>
-            <div
-              class="col-md-2.4"
-              style="margin-left: 30px;margin-top: 10px; background-size: 30px; background-color: rgb(92, 116, 250)"
-            >
-              <h4 class="day2"></h4>
-            </div>
-            <div
-              class="col-md-2.4"
-              style="margin-left: 30px;margin-top: 10px; background-size: 30px; background-color: rgb(92, 116, 250)"
-            >
-              <h4 class="day2"></h4>
-            </div>
-            <div
-              class="col-md-2.4"
-              style="margin-left: 30px;margin-top: 10px; background-size: 30px; background-color: rgb(92, 116, 250)"
-            >
-              <h4 class="day2"></h4>
-            </div>
-            <div
-              class="col-md-2.4"
-              style="margin-left: 30px;margin-top: 10px; background-size: 30px; background-color: rgb(92, 116, 250)"
-            >
-              <h4 class="day2"></h4>
-            </div> -->
           </div>
         </div>
       </div>

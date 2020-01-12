@@ -28,13 +28,13 @@ Project is created with:
 ## Files / Running Page
 * Here are some screen shots of the running page from an images folder:
 
- ![Starting Page](images/before-work.png)
+ ![Starting Page](images/start-page.png)
 
- ![During Work Page Update](images/during-work.png)
+ ![During Work Page Update](images/working-page.png)
 
 
 ## Key Notes
-* Make sure to include the bootstrap link:
+* Bootstrap link for html format
 
 ```
 $ <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
@@ -48,4 +48,8 @@ $ <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js
 * Moments link added for date and time
 ```
 $ <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment-with-locales.min.js"></script>
+```
+* AJAX script link
+```
+$ <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 ```

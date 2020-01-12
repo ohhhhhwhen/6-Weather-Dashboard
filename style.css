@@ -17,21 +17,18 @@ a {
   background-color: rgb(92, 116, 250);
 }
 
-/* .daysAfter {
-  margin-left: 30px;
-  margin-top: 10px;
-  background-size: 30px;
-  background-color: rgb(92, 116, 250);
-} */
+h1{
+  color: rgb(255, 0, 0);
+}
+
+body {
+  background-image: url('https://cdn.geekwire.com/wp-content/uploads/2019/05/billnye-630x394.png');
+}
 
 .hidden{
     visibility: hidden;
 }
 
-.red{
-    background-color: rgb(255, 38, 38);
-}
-
-.blue{
-    background-color: rgb(42, 42, 255);
+.weatherInfo{
+  font-size: 60px;
 }

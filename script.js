@@ -1,6 +1,4 @@
 var theDate = moment().format("(M/D/YYYY)");
-console.log(theDate);
-var blueDate = moment().format("M/D/YYYY");
 var APIKey = "a43d31585ad2e0c3fcd47ec0de96f2a6";
 var cityNames = [];
 var lat;
@@ -9,7 +7,7 @@ var cityID;
 var iconNum;
 var queryURL;
 var userCity;
-var dayCount = 0;
+var dayCount;
 var days = $(".fiveDays");
 
 function displayCityInfo() {
@@ -22,9 +20,11 @@ function displayCityInfo() {
     APIKey;
 
   ajaxCity();
+  fiveDayW();
 }
 
 function city() {
+  $(".weatherInfo").remove();
   userCity = $("#citySearch")
     .val()
     .trim();
@@ -54,17 +54,6 @@ function uv() {
     method: "GET"
   }).then(function(response) {
     $(".uv").text("UV Index: " + response.value);
-    // $(".uv").text("UV Index: ");
-    // var uvNum = $("<h6>").text(response.value);
-    // $(".uv").append(uvNum);
-    // if(response.value < 5){
-    //   $(".uv").remove("class", "red");
-    //   $(".uv").attr("class", "blue");
-    // }
-    // else{
-    //   $(".uv").remove("class", "blue");
-    //   $(".uv").attr("class", "red");
-    // }
     $(".cityBtns").empty();
 
     for (var i = 0; i < cityNames.length; ++i) {
@@ -90,7 +79,10 @@ function ajaxCity() {
     $(".hum").text("Humidity: " + response.main.humidity + "%");
     $(".wind").text("Wind Speed: " + response.wind.speed);
 
-    icon();
+    var iconURL = "http://openweathermap.org/img/w/" + iconNum + ".png";
+    var cityImg = $("<img>");
+    cityImg.attr("src", iconURL);
+    $(".cityName").append(cityImg);
 
     lat = response.coord.lat;
     lon = response.coord.lon;
@@ -99,12 +91,6 @@ function ajaxCity() {
   });
 }
 
-function icon() {
-  var iconURL = "http://openweathermap.org/img/w/" + iconNum + ".png";
-  var cityImg = $("<img>");
-  cityImg.attr("src", iconURL);
-  $(".cityName").append(cityImg);
-}
 
 function fiveDayW() {
   var daysSection = document.getElementById("title5D");
@@ -121,31 +107,33 @@ function fiveDayW() {
     url: fiveURL,
     method: "GET"
   }).then(function(response) {
-    console.log(fiveURL);
-
-    console.log(response);
-
-    console.log(response.list.length);
-
+    var dayBoxes = $(".fiveBoxes");
+    dayBoxes.empty();
+    dayCount = 1;
 
     for (var x = 0; x < response.list.length; ++x) {
-      if(JSON.stringify(response.list[x].dt_txt).includes("00:00:00")){
-        iconNum = response.list[x].weather[x].icon;
-        var dayBoxes = $(".fiveBoxes");
+      if (response.list[x].dt_txt.includes("00:00:00")) {
+        iconNum = response.list[x].weather[0].icon;
         var extraDays = $("<div>");
+        var thatDate = $("<h6>");
         var dayImg = $("<img>");
         var extraTemp = $("<h6>");
         var extraHum = $("<h6>");
         var iconURL = "http://openweathermap.org/img/w/" + iconNum + ".png";
-  
+        var today = new Date();
+        var newDays = new Date();
+        newDays.setDate(today.getDate() + dayCount);
+        console.log(moment(newDays).format("MM/D/YYYY"));
+        var forecast = moment(newDays).format("MM/D/YYYY");
+        thatDate.text(forecast);
         dayImg.attr("src", iconURL);
-        extraTemp.text("Temperature: " + response.list[x].main.temp);
-        extraHum.text("Humidity: " + response.list[x].main.humidity);
-  
-        extraDays.append(dayImg, extraTemp, extraHum);
+        extraTemp.text("Temperature: " + response.list[x].main.temp + " °F ");
+        extraHum.text("Humidity: " + response.list[x].main.humidity + "% ");
+
+        extraDays.append(thatDate, dayImg, extraTemp, extraHum);
         extraDays.attr("class", "days");
         dayBoxes.append(extraDays);
-        console.log(x);
+        ++dayCount;
       }
     }
   });
