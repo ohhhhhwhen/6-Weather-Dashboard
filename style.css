@@ -2,8 +2,8 @@ a {
   font-size: 30px !important;
 }
 
-.left-side {
-  background-color: rgb(202, 202, 202);
+.left-side, .card {
+  background-color: rgb(116, 110, 110);
 }
 
 .cities {
@@ -17,12 +17,8 @@ a {
   background-color: rgb(92, 116, 250);
 }
 
-h1{
-  color: rgb(255, 0, 0);
-}
-
 body {
-  background-image: url('https://cdn.geekwire.com/wp-content/uploads/2019/05/billnye-630x394.png');
+  background-color: rgb(192, 181, 181);
 }
 
 .hidden{
