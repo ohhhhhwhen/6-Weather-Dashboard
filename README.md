@@ -1,10 +1,14 @@
 # 6-Weather-Dashboard
 
 ## Table of contents
+* [Deployed Repo](#deployed-repo)
 * [Assignment Info](#assignment-info)
 * [Technologies](#technologies)
 * [Files](#files)
 * [Key Notes](#key-notes)
+
+## Deployed Repo
+https://ohhhhhwhen.github.io/6-Weather-Dashboard/
 
 ## Assignment info
 This application assignment was a Weather Dashboard.
